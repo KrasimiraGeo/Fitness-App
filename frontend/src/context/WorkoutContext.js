@@ -18,6 +18,10 @@ export const workoutsReducer = (state, action) => {
             return{
                 workouts: [action.payload, ...state.workouts]  // a single new workout object and a desctructured array of previous workouts 
             }
+        case 'DELETE_WORKOUT':
+            return{ // filter the current workouts; previous state and remove the one that matched the id of the one in the payload; triggered in the workout details component
+                workouts: state.workouts.filter((w)=>w._id !== action.payload._id)
+            }
 
         default:
             return state

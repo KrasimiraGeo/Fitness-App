@@ -40,6 +40,27 @@ const createWorkout = async (req, res) => {
 
     // add doc do db
     const { title, load, reps } = req.body
+
+    let emptyFields = []
+
+    if (!title) {
+        emptyFields.push('title')
+    }
+    if (!load) {
+        emptyFields.push('load')
+    }
+    if (!reps) {
+        emptyFields.push('reps')
+    }
+    if (emptyFields.length > 0) {  // if there is an empty field do not continue with the reqeust
+        return res.status(400).json({
+            error: 'Please fill in all the fields!',
+            emptyFields
+        })
+
+    }
+    
+
     try {
         //async -> store the response inside workout const
         const workout = await Workout.create({ title, load, reps })
@@ -53,14 +74,14 @@ const createWorkout = async (req, res) => {
 const deleteWorkout = async (req, res) => {
     const { id } = req.params
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error:'No such workout'})
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'No such workout' })
     }
 
-    const workout = await Workout.findOneAndDelete({_id: id})
+    const workout = await Workout.findOneAndDelete({ _id: id })
 
-    if(!workout){
-        return res.status(400).json({error:'No such workout'})
+    if (!workout) {
+        return res.status(400).json({ error: 'No such workout' })
     }
 
     res.status(200).json(workout)
@@ -68,18 +89,18 @@ const deleteWorkout = async (req, res) => {
 
 // update a workout
 
-const updateWorkout = async (req, res)=>{
+const updateWorkout = async (req, res) => {
     const { id } = req.params
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error:'No such workout'})
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'No such workout' })
     }
 
-    const workout = await Workout.findOneAndUpdate({_id:id}, {
+    const workout = await Workout.findOneAndUpdate({ _id: id }, {
         ...req.body //spread the body of the request, there should be a field that is to be updated
     })
 
-    if(!workout){
-        return res.status(400).json({error: 'No such workout'})
+    if (!workout) {
+        return res.status(400).json({ error: 'No such workout' })
 
     }
 

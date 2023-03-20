@@ -1,6 +1,9 @@
+import {useWorkoutsContext} from '../hooks/useWorkoutsContext'
 
 //desctructuring props to get only the workout that is passed in from array in Home
 export const WorkoutDetails = ({ workout }) => {
+
+    const {dispatch} = useWorkoutsContext()
 
     const handleDelete = async () => {
         const response = await fetch('/api/workouts/' + workout._id, {
@@ -10,7 +13,10 @@ export const WorkoutDetails = ({ workout }) => {
         const json = await response.json() // the doc that was just deleted
 
         if(response.ok){ // in case the data was not successfully deleted the context should not be changed
-
+            dispatch({
+                type:'DELETE_WORKOUT',  // dispatch the action to the reducer
+                payload: json
+            })
         }
     }
 
