@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 export const WorkoutForm = () => {
+
+    const {dispatch} = useWorkoutsContext()
 
     const [title, setTitle] = useState('')
     const [load, setLoad] = useState('')
@@ -31,7 +34,11 @@ export const WorkoutForm = () => {
             setLoad('')
             setReps('')
             setError(null)
-            console.log('new workout added')
+            console.log('new workout added', json)
+            dispatch({ // updating the state in the context to cause a re-render of the workouts list
+                type:'CREATE_WORKOUT', 
+                payload: json
+            })
         }
     }
 

@@ -1,20 +1,23 @@
-import {useState, useEffect} from 'react'
+import { useEffect } from 'react'
 
-
-import {WorkoutDetails} from '../components/WorkoutDetails'
+import { WorkoutDetails } from '../components/WorkoutDetails'
 import { WorkoutForm } from '../components/WorkoutForm'
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
-export const Home = () =>{
+export const Home = () => {
 
-    const [workouts, setWorkouts] = useState(null)
+    const { workouts, dispatch } = useWorkoutsContext() // global context state instead of local 
 
-    useEffect(()=>{
-        const fetchWorkouts = async () =>{ // fetch data from the backend
+    useEffect(() => {
+        const fetchWorkouts = async () => { // fetch data from the backend
             const response = await fetch('/api/workouts') // in package json - added proxy to direct unknown requests to the backend server; otherwise stops them for cross origin; it will work only in development; in production it will not
             const json = await response.json() // an array ot workout objects
 
-            if(response.ok){
-                setWorkouts(json)
+            if (response.ok) {
+                dispatch({
+                    type: 'SET_WORKOUTS',
+                    payload: json // the full array of workouts
+                })
             }
         }
 
@@ -24,14 +27,14 @@ export const Home = () =>{
     return (
         <div className="home">
             <div className='workouts'>
-                {workouts && workouts.map((workout)=>(
-                    <WorkoutDetails 
-                    key ={workout._id}
-                    workout ={workout}
+                {workouts && workouts.map((workout) => (
+                    <WorkoutDetails
+                        key={workout._id}
+                        workout={workout}
                     />
                 ))}
             </div>
-            <WorkoutForm/>
+            <WorkoutForm />
         </div>
     )
 }
