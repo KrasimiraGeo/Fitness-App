@@ -1,5 +1,7 @@
 import {useWorkoutsContext} from '../hooks/useWorkoutsContext'
 
+//date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 //desctructuring props to get only the workout that is passed in from array in Home
 export const WorkoutDetails = ({ workout }) => {
 
@@ -25,8 +27,8 @@ export const WorkoutDetails = ({ workout }) => {
             <h4>{workout.title}</h4>
             <p><strong>Load (kg): </strong> {workout.load}</p>
             <p><strong>Reps: </strong> {workout.reps}</p>
-            <p>{workout.createdAt}</p>
-            <span onClick={handleDelete}>Delete</span>
+            <p>{formatDistanceToNow(new Date(workout.createdAt), {addSuffix: true})}</p>
+            <span onClick={handleDelete} className='material-symbols-outlined'>delete</span>
         </div>
     )
 }

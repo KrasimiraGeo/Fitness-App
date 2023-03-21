@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home';
 import { Navbar } from './components/Navbar';
+import { LandingPage } from './pages/LandingPage';
 //Browser Router wraps everywhere we want to use it
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Navbar/>
+      <LandingPage/>
         <div className='pages'>
           <Routes>
             <Route

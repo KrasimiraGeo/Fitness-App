@@ -6,9 +6,8 @@ export const Navbar = () => {
         <header>
             <div className="container">
                 <Link to='/'>
-                    <h1>Climb Track</h1>
+                    <h1>Fit Track</h1>
                 </Link>
-                
             </div>
         </header>
     )

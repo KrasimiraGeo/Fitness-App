@@ -2,34 +2,139 @@
 
 /* layout */
 :root {
-  --primary: #1aac83;
+  --primary: #88E4D6;
   --error: #e7195a;
+  --darkGrey: #121212;
+  --landingGrey: #476367;
+  --fieldGrey:#28272785;
+  --grey: #535353;
+  --offwhite: #f5f5f5;
 }
 body {
-  background: #f1f1f1;
+  background: var(--darkGrey);
   margin: 0;
   font-family: "Poppins";
 }
 header {
-  background: #fff;
+  background: var(--darkGrey);
+  border-bottom: 1px solid #555;
 }
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 10px 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color:var(--darkGrey);
+  
 }
 header a {
-  color: #333;
+  color: var(--offwhite);
   text-decoration: none;
+}
+header h1{
+  font-size: 20px;
 }
 .pages{
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
+  background-color: var(--darkGrey);
 }
+
+.landing{
+  /* background-image: url('./assets/train-insane.jpg'); */
+  color: var(--offwhite);
+  background-color: var(--landingGrey);
+  border-bottom: 20px solid var(--landingGrey);
+  display: grid;
+    justify-content: end;
+    justify-items: start;
+  /* border-image: linear-gradient(to bottom, var(--landingGrey), var(--darkGrey)) 1 100%; */
+}
+
+.head{
+  width: fit-content;
+  height: auto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 10%;
+  margin-left: 5%;
+  align-content: center;
+  flex-wrap: wrap;
+  color: var(--offwhite);
+}
+.head h1{
+  margin-bottom: 0px;
+}
+.head h4{
+  
+  margin-top: 10px;
+}
+
+.head button{
+  padding: 10px 20px;
+  border-radius: 10px;
+  border:2px solid var(--primary);
+  background-color:var(--landingGrey);
+ color:white;
+}
+.head button:hover{
+  background-color: var(--primary);
+  color:var(--darkGrey);
+  cursor: pointer;
+}
+
+.holder{
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.holder img{
+  max-width:100%;
+  position: static;
+}
+
+.landing h3{
+  position: absolute;
+}
+
+.landing img{
+ object-fit: fill;
+ display: flex;
+}
+
+@media only screen and (max-width: 1250px) {
+  .head {
+    width: 100%;
+    position: static;
+    margin-top: 5%;
+    margin-bottom: 1%;
+    margin-left: auto;
+    text-align: center;
+  }
+
+  .holder {
+    justify-content: center;
+  }
+
+  .holder img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.holder img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 /* homepage */
 .home {
@@ -38,12 +143,19 @@ header a {
   gap: 100px;
 }
 .workout-details {
-  background: #fff;
-  border-radius: 4px;
+  background: var(--fieldGrey);
+  border-radius: 10px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  border:2px solid var(--landingGrey);
+}
+
+.workout-details:hover{
+  background: #2f4144;
+  cursor: pointer;
+
 }
 .workout-details h4 {
   margin: 0 0 10px 0;
@@ -52,23 +164,39 @@ header a {
 }
 .workout-details p {
   margin: 0;
-  font-size: 0.9em;
-  color: #555;
+  font-size: 1em;
+  color: var(--offwhite);
 }
 .workout-details span {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background: #f1f1f1;
+  background:var(--darkGrey);
   padding: 6px;
   border-radius: 50%;
-  color: #333;
+  color: var(--offwhite);
+   border:2px solid var(--primary);
+}
+.workout-details span:hover{
+background-color: var(--error);
 }
 
 /* new workout form */
+form{
+  background-color: var(--fieldGrey);
+  padding: 10px 20px;
+  border-radius: 10px;
+  height: fit-content;
+  margin-top: 20px;
+  border:2px solid var(--landingGrey);
+}
 label, input {
   display: block;
+  color: var(--offwhite);
+}
+form h3{
+  color:var(--offwhite);
 }
 input {
   padding: 10px;
@@ -78,19 +206,22 @@ input {
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: var(--offwhite);
+ 
 }
 form button {
   background: var(--primary);
   border: 0;
-  color: #fff;
+  color: var(--darkGrey);
   padding: 10px;
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 div.error {
   padding: 10px;
-  background: #ffefef;
+  background: var(--offwhite);
   border: 1px solid var(--error);
   color: var(--error);
   border-radius: 4px;
@@ -99,3 +230,6 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
+
+
+      
