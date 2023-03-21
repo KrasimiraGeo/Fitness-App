@@ -3,26 +3,29 @@ import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 export const WorkoutForm = () => {
 
-    const {dispatch} = useWorkoutsContext()
+    const { dispatch } = useWorkoutsContext()
     const [emptyFields, setEmptyFields] = useState([])
 
     const [title, setTitle] = useState('')
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
+    const [type, setType] = useState('')
     const [error, setError] = useState('')
 
-    const handleSubmit = async(e)=>{
+    console.log(emptyFields)
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const workout = {title, load, reps}
+        const workout = { title, load, reps, type}
 
         console.log(workout)
-        
+
         const response = await fetch('/api/workouts', {
             method: 'POST',
             body: JSON.stringify(workout),
             headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             }
         })
 
@@ -32,21 +35,22 @@ export const WorkoutForm = () => {
 
         console.log(json)
 
-        if(!response.ok){
+        if (!response.ok) {
             console.log(response)
             setError(json.error) // we have an error property on the json in the backend;
             setEmptyFields(json.emptyFields)
         }
 
-        if(response.ok){
+        if (response.ok) {
             setTitle('')
             setLoad('')
             setReps('')
             setError(null)
             setEmptyFields([])
+            setType('')
             console.log('new workout added', json)
             dispatch({ // updating the state in the context to cause a re-render of the workouts list
-                type:'CREATE_WORKOUT', 
+                type: 'CREATE_WORKOUT',
                 payload: json
             })
         }
@@ -56,9 +60,23 @@ export const WorkoutForm = () => {
 
     return (
         <form className='create' onSubmit={handleSubmit}>
+
             <h3>Add a new workout</h3>
 
-            <label>Exercise title</label>
+            <label>Exercise type</label>
+            <select 
+             value={type}
+             onChange={(e) => setType(e.target.value)}
+             >
+                <option value ='--'>--</option>
+                <option value ='legs'>Legs</option>
+                <option value ='arms'>Arms</option>
+                <option value='back'>Back</option>
+                <option value='chest'>Chest</option>
+            </select>
+            
+
+            <label>Title</label>
             <input
                 type='text'
                 onChange={(e) => setTitle(e.target.value)}

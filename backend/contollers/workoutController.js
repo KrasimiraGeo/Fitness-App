@@ -38,8 +38,9 @@ const getWorkout = async (req, res) => {
 const createWorkout = async (req, res) => {
     //post a new workout
 
+    console.log(req.body)
     // add doc do db
-    const { title, load, reps } = req.body
+    const { title, load, reps, type } = req.body
 
     let emptyFields = []
 
@@ -52,6 +53,11 @@ const createWorkout = async (req, res) => {
     if (!reps) {
         emptyFields.push('reps')
     }
+    if(type === '--'){
+        emptyFields.push('type')
+    }
+
+    console.log(emptyFields.length)
     if (emptyFields.length > 0) {  // if there is an empty field do not continue with the reqeust
         return res.status(400).json({
             error: 'Please fill in all the fields!',
@@ -59,13 +65,15 @@ const createWorkout = async (req, res) => {
         })
 
     }
-    
+
 
     try {
         //async -> store the response inside workout const
-        const workout = await Workout.create({ title, load, reps })
+        const workout = await Workout.create({ title, load, reps, type })
+        console.log(workout)
         res.status(200).json(workout)
-    } catch (error) {
+    } catch (error) {    ///Mongoose validator error
+        console.log(error)
         res.status(400).json({ error: error.message })
     }
 }

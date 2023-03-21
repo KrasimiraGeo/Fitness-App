@@ -4,6 +4,8 @@
 :root {
   --primary: #88E4D6;
   --error: #e7195a;
+  --purple:#9757D7;
+  --blue: #3772FF;
   --darkGrey: #121212;
   --landingGrey: #476367;
   --fieldGrey:#28272785;
@@ -62,7 +64,7 @@ header h1{
   flex-direction: column;
   justify-content: flex-end;
   margin-top: 10%;
-  margin-left: 5%;
+  margin-left: 2%;
   align-content: center;
   flex-wrap: wrap;
   color: var(--offwhite);
@@ -191,14 +193,14 @@ form{
   margin-top: 20px;
   border:2px solid var(--landingGrey);
 }
-label, input {
+label, input{
   display: block;
   color: var(--offwhite);
 }
 form h3{
   color:var(--offwhite);
 }
-input {
+input, select {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -207,7 +209,7 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
   background-color: var(--offwhite);
- 
+ color: var(--darkGrey);
 }
 form button {
   background: var(--primary);
@@ -221,14 +223,16 @@ form button {
 }
 div.error {
   padding: 10px;
-  background: var(--offwhite);
+  background: #e7195a1e;
   border: 1px solid var(--error);
   color: var(--error);
   border-radius: 4px;
   margin: 20px 0;
+  border-radius: 10px;
 }
 input.error {
   border: 1px solid var(--error);
+  border-radius: 10px;
 }
 
 
