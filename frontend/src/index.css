@@ -6,9 +6,11 @@
   --error: #e7195a;
   --purple:#9757D7;
   --blue: #3772FF;
+  --orange:#FF592C;
   --darkGrey: #121212;
   --landingGrey: #476367;
-  --fieldGrey:#28272785;
+  --fieldGreyLighter:#3a3939f2;
+  --fieldGrey:#282727eb;
   --grey: #535353;
   --offwhite: #f5f5f5;
 }
@@ -38,6 +40,7 @@ header a {
 header h1{
   font-size: 20px;
 }
+
 .pages{
   max-width: 1400px;
   padding: 20px;
@@ -49,7 +52,7 @@ header h1{
   /* background-image: url('./assets/train-insane.jpg'); */
   color: var(--offwhite);
   background-color: var(--landingGrey);
-  border-bottom: 20px solid var(--landingGrey);
+  border-bottom: 50px solid var(--landingGrey);
   display: grid;
     justify-content: end;
     justify-items: start;
@@ -139,11 +142,24 @@ header h1{
 
 
 /* homepage */
-.home {
+/* .home {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 100px;
+  gap: 50px;
+} */
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
 }
+
+@media (min-width: 1000px) {
+  .home {
+    grid-template-columns: 3fr 1fr;
+    gap: 100px;
+  }
+}
+
 .workout-details {
   background: var(--fieldGrey);
   border-radius: 10px;
@@ -192,6 +208,9 @@ form{
   height: fit-content;
   margin-top: 20px;
   border:2px solid var(--landingGrey);
+  /* display:flex;
+  flex-direction: column;
+  justify-content: center; */
 }
 label, input{
   display: block;
@@ -210,6 +229,7 @@ input, select {
   box-sizing: border-box;
   background-color: var(--offwhite);
  color: var(--darkGrey);
+ text-transform: capitalize;
 }
 form button {
   background: var(--primary);
@@ -230,10 +250,70 @@ div.error {
   margin: 20px 0;
   border-radius: 10px;
 }
-input.error {
-  border: 1px solid var(--error);
+input.error,
+select.error {
+  border: 2px solid var(--error);
   border-radius: 10px;
 }
 
-
+.calendar-wrapper{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+}
       
+
+.css-1hbyad5-MuiTypography-root{
+  display:none !important;
+}
+.css-hlj6pa-MuiDialogActions-root{
+  display:none !important;
+}
+.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content{
+  justify-content: center;
+  display:none !important;
+}
+.css-4pax7l-MuiPickersLayout-root{
+max-width: 400px;
+max-height: 400px;
+border-radius: 10px;
+border: 1px solid var(--landingGrey)
+}
+.css-3jvy96-MuiTypography-root-MuiDatePickerToolbar-title{
+  font-size: 20px;
+}
+.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content h4{
+  font-size: 20px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.css-cwhad8-MuiDateCalendar-root{
+  background: var(--fieldGreyLighter);
+  color: var(--offwhite);
+}
+
+.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-toolbar{
+  display:none !important;
+}
+
+
+.css-cwhad8-MuiDateCalendar-root{
+  /* width:300px; */
+  height: 300px;
+  /* border-radius: 10px; */
+  background: var(--fieldGreyLighter);
+}
+
+.css-16b5y55-MuiPickersLayout-contentWrapper{
+  justify-content: center;
+/* border-radius: 10px; */
+background: var(--fieldGreyLighter);
+}
+
+.css-dplwbx-MuiPickersCalendarHeader-label, 
+.css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon,
+.css-1vooibu-MuiSvgIcon-root,
+.css-i5q14k-MuiDayCalendar-header span{
+  color: var(--offwhite);
+}
+

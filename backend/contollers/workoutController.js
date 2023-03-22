@@ -53,11 +53,13 @@ const createWorkout = async (req, res) => {
     if (!reps) {
         emptyFields.push('reps')
     }
-    if(type === '--'){
+    console.log(type)
+    if(!type){
         emptyFields.push('type')
     }
 
     console.log(emptyFields.length)
+
     if (emptyFields.length > 0) {  // if there is an empty field do not continue with the reqeust
         return res.status(400).json({
             error: 'Please fill in all the fields!',
