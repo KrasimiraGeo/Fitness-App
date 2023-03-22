@@ -1,5 +1,5 @@
 backend/node_modules
 backend/.env
 node_modules\.staging\date-fns-0547fb43
-node_modules
+/node_modules
 
