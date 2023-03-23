@@ -22,13 +22,18 @@ export const WorkoutDetails = ({ workout }) => {
         }
     }
 
+    const editHandle = async () => {
+        console.log('this is edit handle');
+    }
+
     return (
         <div className="workout-details">
             <h4>{workout.title}</h4>
             <p><strong>Load (kg): </strong> {workout.load}</p>
             <p><strong>Reps: </strong> {workout.reps}</p>
             <p>added {formatDistanceToNow(new Date(workout.createdAt), {addSuffix: true})}</p>
-            <span onClick={handleDelete} className='material-symbols-outlined'>delete</span>
+            <span onClick={handleDelete} className='material-symbols-outlined' style={{ display: "inlin-block", marginRight: "50px"  }}>delete</span>
+            <span onClick={editHandle} className='material-symbols-outlined' style={{ display: "inline-block" }}>edit</span>
         </div>
     )
 }

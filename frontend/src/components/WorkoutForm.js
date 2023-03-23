@@ -13,14 +13,16 @@ export const WorkoutForm = () => {
     const [type, setType] = useState('')
     const [date, setDate] = useState('')
     const [error, setError] = useState('')
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const empty = []
         const workout = { title, load, reps, type, date }
+        const currentDate= new Date().toISOString().split('T')[0]
 
-        console.log(workout);
-
+        if (date === '') {
+            setDate(currentDate)
+        }
         if (title === '') {
             empty.push('title')
         }
@@ -33,9 +35,9 @@ export const WorkoutForm = () => {
         if (load === '') {
             empty.push('load')
         }
-        if (date === '') {
-            empty.push('date')
-        }
+        
+
+        console.log(workout);
 
         if (empty.length > 0) {
             setEmptyFields(empty)

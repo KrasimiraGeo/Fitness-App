@@ -201,6 +201,10 @@ header h1{
 background-color: var(--error);
 }
 
+.workout-details span:last-child:hover{
+  background-color: var(--blue);
+}
+
 /* new workout form */
 form{
   background-color: var(--fieldGrey);
@@ -268,7 +272,6 @@ select.error {
   justify-content: center;
   margin-bottom: 5%;
 }
-      
 
 .css-1hbyad5-MuiTypography-root{
   display:none !important;
