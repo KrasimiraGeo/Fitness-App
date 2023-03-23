@@ -6,6 +6,7 @@
 const Workout = require('../models/workoutModel')
 
 const mongoose = require('mongoose')
+// const { default: daysToWeeks } = require('date-fns/daysToWeeks')
 
 // get all workouts
 const getWorkouts = async (req, res) => {
@@ -40,7 +41,7 @@ const createWorkout = async (req, res) => {
 
     console.log(req.body)
     // add doc do db
-    const { title, load, reps, type } = req.body
+    const { title, load, reps, type, date } = req.body
 
     let emptyFields = []
 
@@ -53,9 +54,11 @@ const createWorkout = async (req, res) => {
     if (!reps) {
         emptyFields.push('reps')
     }
-    console.log(type)
     if(!type){
         emptyFields.push('type')
+    }
+    if(!date){
+        emptyFields.push('date')
     }
 
     console.log(emptyFields.length)
@@ -65,13 +68,12 @@ const createWorkout = async (req, res) => {
             error: 'Please fill in all the fields!',
             emptyFields
         })
-
     }
 
 
     try {
         //async -> store the response inside workout const
-        const workout = await Workout.create({ title, load, reps, type })
+        const workout = await Workout.create({ title, load, reps, type, date })
         console.log(workout)
         res.status(200).json(workout)
     } catch (error) {    ///Mongoose validator error

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 import { Calendar } from './Calendar'
 
@@ -11,20 +11,15 @@ export const WorkoutForm = () => {
     const [load, setLoad] = useState('')
     const [reps, setReps] = useState('')
     const [type, setType] = useState('')
+    const [date, setDate] = useState('')
     const [error, setError] = useState('')
-
-
-    console.log(emptyFields)
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         const empty = []
-        const workout = { title, load, reps, type }
-        console.log(workout)
+        const workout = { title, load, reps, type, date }
 
-        console.log(emptyFields.length)
-
-        console.log(workout.reps === '')
+        console.log(workout);
 
         if (title === '') {
             empty.push('title')
@@ -38,14 +33,14 @@ export const WorkoutForm = () => {
         if (load === '') {
             empty.push('load')
         }
+        if (date === '') {
+            empty.push('date')
+        }
 
         if (empty.length > 0) {
             setEmptyFields(empty)
             setError('Please fill in all the fields!')
         }
-
-        console.log(empty)
-        console.log(emptyFields)
 
 
         if (empty.length === 0) {
@@ -58,14 +53,9 @@ export const WorkoutForm = () => {
                 }
             })
 
-            console.log(response)
-
             const json = await response.json()
 
-            console.log(json)
-
             if (!response.ok) {
-                console.log(response)
                 setError(json.error) // we have an error property on the json in the backend;
                 setEmptyFields(json.emptyFields)
             }
@@ -74,10 +64,10 @@ export const WorkoutForm = () => {
                 setTitle('')
                 setLoad('')
                 setReps('')
+                setDate('')
                 setError(null)
                 setEmptyFields([])
                 setType('')
-                console.log('new workout added', json)
                 dispatch({ // updating the state in the context to cause a re-render of the workouts list
                     type: 'CREATE_WORKOUT',
                     payload: json
@@ -87,7 +77,10 @@ export const WorkoutForm = () => {
 
     }
 
-    console.log(emptyFields)
+    const handleDateChange = (selectedDate) => {
+        console.log(selectedDate);
+        setDate(selectedDate)
+    }
 
     return (
         <form className='create' onSubmit={handleSubmit}>
@@ -95,10 +88,8 @@ export const WorkoutForm = () => {
             <h3>Add a new workout</h3>
 
             <div className='calendar-wrapper'>
-                <Calendar />
+                <Calendar selectDate={handleDateChange} />
             </div>
-
-
             <label>Exercise type</label>
             <select
                 value={type}
@@ -111,8 +102,6 @@ export const WorkoutForm = () => {
                 <option value='back'>Back</option>
                 <option value='chest'>Chest</option>
             </select>
-
-
             <label>Title</label>
             <input
                 type='text'
@@ -120,7 +109,6 @@ export const WorkoutForm = () => {
                 value={title}
                 className={emptyFields.includes('title') ? 'error' : ''}
             />
-
             <label>Load (kg)</label>
             <input
                 type='number'
@@ -128,7 +116,6 @@ export const WorkoutForm = () => {
                 value={load}
                 className={emptyFields.includes('load') ? 'error' : ''}
             />
-
             <label>Reps</label>
             <input
                 type='number'
@@ -136,7 +123,6 @@ export const WorkoutForm = () => {
                 value={reps}
                 className={emptyFields.includes('reps') ? 'error' : ''}
             />
-
             <button>Add workout</button>
             {error && <div className='error'>{error}</div>}
         </form>

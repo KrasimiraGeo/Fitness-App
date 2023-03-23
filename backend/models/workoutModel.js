@@ -5,23 +5,6 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-// const workoutSchema = new Schema({
-//     exercise: {
-//         title: {
-//             type: String,
-//             required: true,
-//         },
-//         reps: {
-//             type: Number,
-//             required: true,
-//         },
-//         load: {
-//             type: Number,
-//             required: true,
-//         }
-//     },
-// }, { timestamps: true })
-
 const workoutSchema = new Schema({  //first argument describes how the schema for the data looks
     title: {
         type: String,
@@ -38,7 +21,11 @@ const workoutSchema = new Schema({  //first argument describes how the schema fo
     type:{
         type: String, 
         enum:['legs', 'arms', 'back', 'core'],
-        required:true
+        required:true,
+    },
+    date: {
+        type: String, 
+        required:true,
     }
 }, { timestamps: true })  // when creating new document it gives them a timestamps prop automatically
 

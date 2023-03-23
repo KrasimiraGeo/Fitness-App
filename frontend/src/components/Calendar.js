@@ -1,24 +1,47 @@
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import { useState } from 'react';
+import { useState } from "react";
+import {
+  LocalizationProvider,
+  PickersDay,
+  StaticDatePicker,
+} from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { Badge } from "@mui/material";
+import CheckIcon from '@mui/icons-material/Check';
 
+export const Calendar = (props) => {
+    console.log(props);
+  const [value, setValue] = useState(new Date());
+  const [highlightedDays, setHighlightedDays] = useState([1, 2, 11, 21]);
 
-export const Calendar = () => {
+  const dateFormatHandler= (date)=>{
+    let formattedDate = date.toISOString().split('T')[0]    
+    props.selectDate(formattedDate)
+    console.log(formattedDate);
+  }
 
-    const [value, setValue]= useState(new Date())
-
-    return(
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <StaticDatePicker 
-        orientation="portrait" 
-        openTo='day'
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <StaticDatePicker
+        orientation="portrait"
         value={value}
-        onChnage={(newValue)=>{
-            setValue(newValue)
+        disableFuture
+        onChange={dateFormatHandler}
+        slots={{
+          day: (props) => {
+            const isSelected = !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.getDate()) >= 0;
+          
+            return (
+              <Badge
+                key={props.day.toString()}
+                overlap="circular"
+                badgeContent={isSelected ? <CheckIcon htmlColor="#FDCA40"/> : undefined}
+              >
+                <PickersDay {...props} />
+              </Badge>
+            );
+          },
         }}
-        // renderInput={(params)=>{ <TextField {...params}/>}}
-        />
-      </LocalizationProvider>
-    )
-}
+      />
+    </LocalizationProvider>
+  );
+};

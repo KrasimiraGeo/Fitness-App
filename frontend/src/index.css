@@ -7,6 +7,7 @@
   --purple:#9757D7;
   --blue: #3772FF;
   --orange:#FF592C;
+  --yellow:#FDCA40;
   --darkGrey: #121212;
   --landingGrey: #476367;
   --fieldGreyLighter:#3a3939f2;
@@ -232,14 +233,20 @@ input, select {
  text-transform: capitalize;
 }
 form button {
-  background: var(--primary);
-  border: 0;
-  color: var(--darkGrey);
+  background: var(--fieldGreyLighter);
+  border: 2px solid var(--landingGrey);
+  color: var(--offwhite);
   padding: 10px;
   font-family: "Poppins";
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   margin-bottom: 20px;
+}
+
+form button:hover{
+background:var(--primary);
+color:var(--darkGrey);
+
 }
 div.error {
   padding: 10px;
@@ -273,11 +280,20 @@ select.error {
   justify-content: center;
   display:none !important;
 }
+
+.css-16b5y55-MuiPickersLayout-contentWrapper{
+  background: var(--offwhite);
+}
 .css-4pax7l-MuiPickersLayout-root{
 max-width: 400px;
-max-height: 400px;
+max-height: 300px;
 border-radius: 10px;
-border: 1px solid var(--landingGrey)
+border: 1px solid var(--landingGrey);
+background: var(--offwhite);
+}
+
+.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-toolbar{
+  display:none !important;
 }
 .css-3jvy96-MuiTypography-root-MuiDatePickerToolbar-title{
   font-size: 20px;
@@ -286,34 +302,20 @@ border: 1px solid var(--landingGrey)
   font-size: 20px;
   padding-bottom: 0;
   margin-bottom: 0;
-}
-.css-cwhad8-MuiDateCalendar-root{
-  background: var(--fieldGreyLighter);
-  color: var(--offwhite);
-}
-
-.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-toolbar{
-  display:none !important;
-}
 
 
-.css-cwhad8-MuiDateCalendar-root{
-  /* width:300px; */
-  height: 300px;
-  /* border-radius: 10px; */
-  background: var(--fieldGreyLighter);
 }
 
-.css-16b5y55-MuiPickersLayout-contentWrapper{
-  justify-content: center;
-/* border-radius: 10px; */
-background: var(--fieldGreyLighter);
+.css-156tkzh-MuiButtonBase-root-MuiPickersDay-root {
+  background-color: var(--darkGrey);
+  color:white;
 }
 
-.css-dplwbx-MuiPickersCalendarHeader-label, 
-.css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon,
-.css-1vooibu-MuiSvgIcon-root,
-.css-i5q14k-MuiDayCalendar-header span{
-  color: var(--offwhite);
+.css-flbe84-MuiDayCalendar-weekContainer span text{
+  background-color: var(--darkGrey);
+}
+
+.css-dplwbx-MuiPickersCalendarHeader-label{
+  color:var(--darkGrey);
 }
 
