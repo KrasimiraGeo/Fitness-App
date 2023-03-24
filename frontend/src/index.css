@@ -161,7 +161,8 @@ header h1{
   }
 }
 
-.workout-details {
+.workout-details,
+.workout-details-edit {
   background: var(--fieldGrey);
   border-radius: 10px;
   margin: 20px auto;
@@ -169,7 +170,15 @@ header h1{
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
   border:2px solid var(--landingGrey);
+  margin-top: 2%;
+/* create two columns of equal width */
 }
+
+
+
+/* .workout-details-edit input {
+  margin-top:5%;
+} */
 
 .workout-details:hover{
   background: #2f4144;
@@ -205,6 +214,12 @@ background-color: var(--error);
   background-color: var(--blue);
 }
 
+.buttons-wrapper{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 /* new workout form */
 form{
   background-color: var(--fieldGrey);
@@ -226,7 +241,7 @@ form h3{
 }
 input, select {
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 20px;
   width: 100%;
   border: 1px solid #ddd;
@@ -235,6 +250,10 @@ input, select {
   background-color: var(--offwhite);
  color: var(--darkGrey);
  text-transform: capitalize;
+}
+
+.label{
+  margin-top: 2%;
 }
 form button {
   background: var(--fieldGreyLighter);

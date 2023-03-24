@@ -15,13 +15,18 @@ export const workoutsReducer = (state, action) => {
                 workouts: action.payload
             }
         case 'CREATE_WORKOUT':
-            return{
+            return {
                 workouts: [action.payload, ...state.workouts]  // a single new workout object and a desctructured array of previous workouts 
             }
         case 'DELETE_WORKOUT':
-            return{ // filter the current workouts; previous state and remove the one that matched the id of the one in the payload; triggered in the workout details component
-                workouts: state.workouts.filter((w)=>w._id !== action.payload._id)
+            return { // filter the current workouts; previous state and remove the one that matched the id of the one in the payload; triggered in the workout details component
+                workouts: state.workouts.filter((w) => w._id !== action.payload._id)
             }
+        case 'EDIT_WORKOUT': // reload the workouts
+        console.log(action.payload)
+           return{
+            workouts: [ ...state.workouts]
+           }
 
         default:
             return state
@@ -42,7 +47,7 @@ export const WorkoutsCtxProvider = ({ children }) => {
     })
 
     return ( // wrap to provide access to the whole app that needs to access the context
-        <WorkoutsCtx.Provider value={{...state, dispatch}}>
+        <WorkoutsCtx.Provider value={{ ...state, dispatch }}>
             {children}
         </WorkoutsCtx.Provider>
     )
