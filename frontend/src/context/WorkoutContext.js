@@ -23,10 +23,13 @@ export const workoutsReducer = (state, action) => {
                 workouts: state.workouts.filter((w) => w._id !== action.payload._id)
             }
         case 'EDIT_WORKOUT': // reload the workouts
-        console.log(action.payload)
-           return{
-            workouts: [ ...state.workouts]
-           }
+        const updatedWorkoutIndex = state.workouts.findIndex(workout => workout._id === action.payload._id);
+        const updatedWorkouts = [...state.workouts];
+        updatedWorkouts[updatedWorkoutIndex] = action.payload;
+        console.log(updatedWorkouts)
+        return {
+          workouts: updatedWorkouts
+        }
 
         default:
             return state

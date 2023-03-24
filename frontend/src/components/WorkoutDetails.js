@@ -64,13 +64,10 @@ export const WorkoutDetails = ({ workout }) => {
 
         const json = await response.json()
 
-        console.log(json)
-        console.log(response.ok)
-
         if (response.ok) { // in case the data was not successfully deleted the context should not be changed
             dispatch({
                 type: 'EDIT_WORKOUT', // dispatch the action to the reducer
-                payload: json
+                payload: json   /// payload might be for the old object and not the updated
             })
         }
 

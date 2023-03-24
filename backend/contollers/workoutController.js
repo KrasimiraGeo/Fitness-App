@@ -108,9 +108,8 @@ const updateWorkout = async (req, res) => {
     }
    
     const workout = await Workout.findOneAndUpdate({ _id: id }, {
-    
         ...req.body //spread the body of the request, there should be a field that is to be updated
-    })
+    }, {new:true})
 
     if (!workout) {
         return res.status(400).json({ error: 'No such workout' })
