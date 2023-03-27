@@ -44,7 +44,7 @@ header h1{
 
 .pages{
   max-width: 1400px;
-  padding: 20px;
+  /* padding: 20px; */
   margin: 0 auto;
   background-color: var(--darkGrey);
 }
@@ -161,16 +161,22 @@ header h1{
   }
 }
 
+.workouts{
+  padding:20px;
+ 
+}
+
 .workout-details,
 .workout-details-edit {
   background: var(--fieldGrey);
   border-radius: 10px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 16px auto;
+  padding:20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
   border:2px solid var(--landingGrey);
   margin-top: 2%;
+ 
 /* create two columns of equal width */
 }
 
@@ -220,14 +226,22 @@ background-color: var(--error);
   left: 0;
 }
 
+.create{
+  padding: 20px;
+  
+  
+}
+
 /* new workout form */
 form{
   background-color: var(--fieldGrey);
   padding: 10px 20px;
   border-radius: 10px;
   height: fit-content;
-  margin-top: 20px;
+  /* margin-top: 2%; */
+  margin: 16px;  
   border:2px solid var(--landingGrey);
+
   /* display:flex;
   flex-direction: column;
   justify-content: center; */

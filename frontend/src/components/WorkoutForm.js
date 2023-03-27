@@ -85,7 +85,8 @@ export const WorkoutForm = () => {
     }
 
     return (
-        <form className='create' onSubmit={handleSubmit}>
+        <div className='create'>
+        <form  onSubmit={handleSubmit}>
 
             <h3>Add a new workout</h3>
 
@@ -128,6 +129,7 @@ export const WorkoutForm = () => {
             <button>Add workout</button>
             {error && <div className='error'>{error}</div>}
         </form>
+        </div>
     )
 
 }

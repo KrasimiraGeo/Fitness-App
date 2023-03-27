@@ -43,6 +43,9 @@ app.use((req, res, next) => {  // a function that will fire on every request
 //use routes -> grabs the routes in the router and uses them in the app
 app.use('/api/workouts', workoutRoutes) // fire a request only on the path /api/workouts/
 
+// // get monthly stats; extract start and end date
+// app.use('/api/workouts/stats', workoutRoutes)
+
 //connect to db; async returns a promise
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

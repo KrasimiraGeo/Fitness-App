@@ -9,6 +9,17 @@ export const Calendar = (props) => {
   const [value, setValue] = useState(new Date());
   const [highlightedDays, setHighlightedDays] = useState([1, 2, 11, 21]);
 
+  // useEffect (()=>{
+  //     const getDays = async () => {
+  //       const response = await fetch(`/api/workouts/stats`)  /// does not get detected in the router
+  //       const json = await response.json()
+  //       console.log(json);
+  //     }
+  //     getDays()
+  // },[])
+
+ 
+
   const dateFormatHandler= (date)=>{
     let formattedDate = date.toISOString().split('T')[0]   
     props.selectDate(formattedDate)

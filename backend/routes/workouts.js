@@ -10,7 +10,9 @@ const {
     getWorkouts, 
     getWorkout,
     deleteWorkout, 
-    updateWorkout
+    updateWorkout,
+    getMonthlyStats,
+    test
 } = require('../contollers/workoutController')
 
 
@@ -23,8 +25,12 @@ router.get('/', getWorkouts) // responds to the /api/workouts/ path in the serve
   
 
 //getting a single workout
-router.get('/:id', getWorkout) // id of the workout; param that changes
+// router.get('/:id', getWorkout) // id of the workout; param that changes
  
+//get monthly stats
+// router.get('/stats', getMonthlyStats)
+
+router.get('/test', test)
 
 //post a new workout; reference to the controller function
 router.post('/', createWorkout)

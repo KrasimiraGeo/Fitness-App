@@ -8,12 +8,31 @@ const Workout = require('../models/workoutModel')
 const mongoose = require('mongoose')
 // const { default: daysToWeeks } = require('date-fns/daysToWeeks')
 
+
 // get all workouts
 const getWorkouts = async (req, res) => {
 
-    const workouts = await Workout.find({}).sort({ createdAt: -1 }) // get all docs sorted from th enewest
-    // sending data to the client
-    res.status(200).json(workouts)
+    let id = req.query['id']
+
+    if (id) {
+        if (!mongoose.Types.ObjectId.isValid(id)) { //checks if the id we have is valid as it is a mongo object type
+            return res.status(404).json({ error: 'Input data is not valid' })
+
+        }
+        const workout = await Workout.findById(id)
+        if (!workout) { // expects a certain tyoe or length; when length is met but id is nonexistent the error is returned
+            return res.status(400).json({ error: 'No such workout' })
+        }
+
+        res.status(200).json(workout)
+
+    } else {
+        const workouts = await Workout.find({}).sort({ createdAt: -1 }) // get all docs sorted from th enewest
+        // sending data to the client
+        res.status(200).json(workouts)
+    }
+
+
 }
 
 // get a single workout 
@@ -34,7 +53,6 @@ const getWorkout = async (req, res) => {
 
 }
 
-
 // create a new workout
 const createWorkout = async (req, res) => {
     //post a new workout
@@ -54,10 +72,10 @@ const createWorkout = async (req, res) => {
     if (!reps) {
         emptyFields.push('reps')
     }
-    if(!type){
+    if (!type) {
         emptyFields.push('type')
     }
-    if(!date){
+    if (!date) {
         emptyFields.push('date')
     }
 
@@ -106,10 +124,10 @@ const updateWorkout = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'No such workout' })
     }
-   
+
     const workout = await Workout.findOneAndUpdate({ _id: id }, {
         ...req.body //spread the body of the request, there should be a field that is to be updated
-    }, {new:true})
+    }, { new: true })
 
     if (!workout) {
         return res.status(400).json({ error: 'No such workout' })
@@ -118,10 +136,51 @@ const updateWorkout = async (req, res) => {
     res.status(200).json(workout)
 }
 
+const getMonthlyStats = async (req, res) => {
+
+    console.log('controller');
+
+    const month = Number(req.query.month);
+    const year = new Date().getFullYear();
+    const startDate = new Date(year, month, 1);
+    const endDate = new Date(year, month + 1, 1);
+
+    try {
+        const stats = await Workout.aggregate([
+            {
+                $match: {
+                    date: {
+                        $gte: startDate,
+                        $lt: endDate
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: "$exercise_name",
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+        res.json(stats);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching workout statistics.' });
+    }
+}
+
+const test = async (req, res) => {
+    console.log(req.query)
+
+    res.status(200).json()
+}
+
 module.exports = {
     createWorkout,
     getWorkouts,
     getWorkout,
     deleteWorkout,
-    updateWorkout
+    updateWorkout,
+    getMonthlyStats,
+    test
 }
