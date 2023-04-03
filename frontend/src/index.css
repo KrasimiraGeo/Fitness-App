@@ -227,9 +227,7 @@ background-color: var(--error);
 }
 
 .create{
-  padding: 20px;
-  
-  
+  padding: 20px; 
 }
 
 /* new workout form */
@@ -238,25 +236,22 @@ form{
   padding: 10px 20px;
   border-radius: 10px;
   height: fit-content;
-  /* margin-top: 2%; */
   margin: 16px;  
   border:2px solid var(--landingGrey);
-
-  /* display:flex;
-  flex-direction: column;
-  justify-content: center; */
 }
+
 label, input{
   display: block;
   color: var(--offwhite);
+  margin-top: 1%;
 }
 form h3{
   color:var(--offwhite);
 }
 input, select {
   padding: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -277,6 +272,7 @@ form button {
   font-family: "Poppins";
   border-radius: 10px;
   cursor: pointer;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -293,12 +289,20 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
   border-radius: 10px;
+  text-align: center;
 }
 input.error,
 select.error {
   border: 2px solid var(--error);
   border-radius: 10px;
 }
+
+.list{
+  display: flex;
+  justify-content: center;
+}
+
+/* Material UI Calendar css */
 
 .calendar-wrapper{
   display: flex;
@@ -322,7 +326,7 @@ select.error {
 }
 .css-4pax7l-MuiPickersLayout-root{
 max-width: 400px;
-max-height: 300px;
+max-height: 400px;
 border-radius: 10px;
 border: 1px solid var(--landingGrey);
 background: var(--offwhite);
@@ -355,3 +359,61 @@ background: var(--offwhite);
   color:var(--darkGrey);
 }
 
+/* date circles */
+
+.css-156tkzh-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #dfdef8;  
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0 2px;
+}
+
+.css-156tkzh-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled{
+  background: #e7e7e7;
+  color:#bfbfbf;
+}
+
+.css-1hiwve1-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+  color:var(--offwhite);
+  /* background-color: var(--landingGrey) */
+}

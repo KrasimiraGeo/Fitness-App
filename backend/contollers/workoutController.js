@@ -39,6 +39,7 @@ const getWorkouts = async (req, res) => {
 
 const getWorkout = async (req, res) => {
     const { id } = req.params
+    console.log(req.params);
 
     if (!mongoose.Types.ObjectId.isValid(id)) { //checks if the id we have is valid as it is a mongo object type
         return res.status(404).json({ error: 'No such workout' })
@@ -138,41 +139,27 @@ const updateWorkout = async (req, res) => {
 
 const getMonthlyStats = async (req, res) => {
 
-    console.log('controller');
-
-    const month = Number(req.query.month);
-    const year = new Date().getFullYear();
-    const startDate = new Date(year, month, 1);
-    const endDate = new Date(year, month + 1, 1);
-
     try {
-        const stats = await Workout.aggregate([
-            {
-                $match: {
-                    date: {
-                        $gte: startDate,
-                        $lt: endDate
-                    }
-                }
-            },
-            {
-                $group: {
-                    _id: "$exercise_name",
-                    count: { $sum: 1 }
-                }
-            }
-        ]);
-        res.json(stats);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while fetching workout statistics.' });
-    }
-}
+        const requestDate = req.params.date; // gets the full date
+        const year = requestDate.toString().split('-')[0]; 
+        const month = requestDate.toString().split('-')[1];
+    
+        const workouts = await Workout.find({
+          $expr: {
+            $and: [
+              { $eq: [{ $year: { $toDate: "$date" } }, Number(year)] },
+              { $eq: [{ $month: { $toDate: "$date" } }, Number(month)] }
+            ]
+          }
+        });
+    
+        res.status(200).json(workouts);
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Internal server error" });
+      }
+    
 
-const test = async (req, res) => {
-    console.log(req.query)
-
-    res.status(200).json()
 }
 
 module.exports = {
@@ -182,5 +169,5 @@ module.exports = {
     deleteWorkout,
     updateWorkout,
     getMonthlyStats,
-    test
+    
 }

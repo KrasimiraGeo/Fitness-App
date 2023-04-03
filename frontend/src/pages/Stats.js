@@ -1,24 +1,44 @@
 import classes from './Stats.module.css'
-import { useEffect } from 'react'
-export const Stats = () =>{
+import { useEffect, useState } from 'react'
 
+import { WorkoutDetails } from '../components/WorkoutDetails'
 
-    useEffect (()=>{
+export const Stats = () => {
 
-        const getDays = async () => {
-          const response = await fetch ('/api/workouts/stats')
-          const json = await response.json()
-          console.log(json);
-        }
-    
-        getDays()
-      },[])
+  const currentDate = new Date().toISOString().split('T')[0]
+  const [filteredWorkouts, setFilteredWorkouts] = useState([])
 
-    // calendar is with its built in functionalities
-    return(
-        <div className={classes.wrapper}>
-            <p>This is stats page</p>
-            {/* <Calendar/> */}
-        </div>
-    )
+  //displaying entries for the current month and year
+
+  useEffect(() => {
+
+    const getDays = async () => {
+      const response = await fetch('/api/workouts/stats/' + currentDate)
+      const json = await response.json()
+      setFilteredWorkouts(json)
+      console.log(json); // an array with exercise objects
+    }
+
+    getDays()
+  }, [])
+
+  console.log(filteredWorkouts)
+
+  // workout details does not function properly: edit and delete functions;
+  // BUT they work properly after a reload
+  // filtered dates are not in the context workout array; returns null 
+
+  return (
+    <div className={classes.wrapper}>
+      <div>
+        <h2>This month's activity rate</h2>
+      </div>
+      {/* <p>This is stats page</p> */}
+      {/* <div className={classes.list}>
+        {filteredWorkouts.map(workout => (
+          <WorkoutDetails key={workout._id} workout={workout} />
+        ))}
+      </div> */}
+    </div>
+  )
 }

@@ -8,21 +8,19 @@ export const WorkoutForm = () => {
     const [emptyFields, setEmptyFields] = useState([])
 
     const [title, setTitle] = useState('')
-    const [load, setLoad] = useState('')
-    const [reps, setReps] = useState('')
+    const [load, setLoad] = useState(0)
+    const [reps, setReps] = useState(1)
     const [type, setType] = useState('')
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0])
     const [error, setError] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const empty = []
         const workout = { title, load, reps, type, date }
-        const currentDate= new Date().toISOString().split('T')[0]
+       
+    // TODO: format title to start with a capital letter
 
-        if (date === '') {
-            setDate(currentDate)
-        }
         if (title === '') {
             empty.push('title')
         }
@@ -84,6 +82,7 @@ export const WorkoutForm = () => {
         setDate(selectedDate)
     }
 
+   console.log(emptyFields);
     return (
         <div className='create'>
         <form  onSubmit={handleSubmit}>
@@ -97,7 +96,7 @@ export const WorkoutForm = () => {
             <select
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className={emptyFields.includes('type') ? 'error' : ''}
+                className={emptyFields.length !== 0 && emptyFields.includes('type') ? 'error' : ''}
             >
                 <option value=''></option>
                 <option value='legs'>Legs</option>
@@ -110,21 +109,23 @@ export const WorkoutForm = () => {
                 type='text'
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
-                className={emptyFields.includes('title') ? 'error' : ''}
+                className={emptyFields.length !== 0 && emptyFields.includes('title') ? 'error' : ''}
             />
             <label>Load (kg)</label>
             <input
                 type='number'
                 onChange={(e) => setLoad(e.target.value)}
                 value={load}
-                className={emptyFields.includes('load') ? 'error' : ''}
+                min='0'
+                className={emptyFields.length !== 0 && emptyFields.includes('load') ? 'error' : ''}
             />
             <label>Reps</label>
             <input
                 type='number'
                 onChange={(e) => setReps(e.target.value)}
                 value={reps}
-                className={emptyFields.includes('reps') ? 'error' : ''}
+                min='1'
+                className={emptyFields.length !== 0 && emptyFields.includes('reps') ? 'error' : ''}
             />
             <button>Add workout</button>
             {error && <div className='error'>{error}</div>}

@@ -14,7 +14,9 @@ export const WorkoutDetails = ({ workout }) => {
     const [dateEdit, setDateEdit] = useState(workout.date)
     const [typeEdit, setTypeEdit] = useState(workout.type)
 
-    console.log(workout);
+    // console.log(workout);
+
+    // TODO: set alerts on delete and submit changes
     const { dispatch } = useWorkoutsContext()
 
     const deleteHandler = async () => {
@@ -40,13 +42,8 @@ export const WorkoutDetails = ({ workout }) => {
 
     const confirmEditHandler = async () => {
         console.log('this is the confirm edit handler');
-        // workout.title = titleEdit
-        // workout.load = loadEdit
-        // workout.reps = repsEdit
-        // workout.date = dateEdit
-        // workout.type = typeEdit
 
-        console.log(workout);
+        // console.log(workout);
         const response = await fetch('/api/workouts/' + workout._id, {
             method: 'PATCH',
             body: JSON.stringify(
@@ -63,6 +60,8 @@ export const WorkoutDetails = ({ workout }) => {
         })
 
         const json = await response.json()
+
+        console.log(json);
 
         if (response.ok) { // in case the data was not successfully deleted the context should not be changed
             dispatch({
@@ -107,7 +106,7 @@ export const WorkoutDetails = ({ workout }) => {
                         <option value='back'>Back</option>
                         <option value='chest'>Chest</option>
                     </select>
-                    {/* <input defaultValue={workout.type} onChange={(e)=> setTypeEdit(e.target)}></input> */}
+
                     <label>Load (kg)</label>
                     <input defaultValue={workout.load} onChange={(e) => setLoadEdit(e.target.value)}></input>
                     <label>Reps:</label>

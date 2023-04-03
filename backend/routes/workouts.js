@@ -12,7 +12,7 @@ const {
     deleteWorkout, 
     updateWorkout,
     getMonthlyStats,
-    test
+    
 } = require('../contollers/workoutController')
 
 
@@ -24,13 +24,13 @@ const router = express.Router()
 router.get('/', getWorkouts) // responds to the /api/workouts/ path in the server file => everything after the /
   
 
-//getting a single workout
-// router.get('/:id', getWorkout) // id of the workout; param that changes
+// getting a single workout
+router.get('/byID/:id', getWorkout) // id of the workout; param that changes
  
-//get monthly stats
-// router.get('/stats', getMonthlyStats)
+// get monthly stats
+router.get('/stats/:date', getMonthlyStats)
 
-router.get('/test', test)
+// router.get('/test', test)
 
 //post a new workout; reference to the controller function
 router.post('/', createWorkout)

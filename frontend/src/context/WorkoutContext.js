@@ -9,6 +9,8 @@ export const workoutsReducer = (state, action) => {
 
     //check the action type 
 
+    console.log(action)
+    console.log(state)
     switch (action.type) {
         case 'SET_WORKOUTS':
             return {
@@ -24,6 +26,7 @@ export const workoutsReducer = (state, action) => {
             }
         case 'EDIT_WORKOUT': // reload the workouts
         const updatedWorkoutIndex = state.workouts.findIndex(workout => workout._id === action.payload._id);
+        console.log(updatedWorkoutIndex);
         const updatedWorkouts = [...state.workouts];
         updatedWorkouts[updatedWorkoutIndex] = action.payload;
         console.log(updatedWorkouts)

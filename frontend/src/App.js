@@ -5,6 +5,8 @@ import { LandingPage } from './pages/LandingPage';
 import { Stats } from './pages/Stats'
 //Browser Router wraps everywhere we want to use it
 
+// TODO: workout details should be in a different page
+
 function App() {
   return (
     <div className="App">
@@ -21,6 +23,7 @@ function App() {
               path='/' 
               element={<Home />}
             />
+            
             <Route
               path='/stats'
               element={<Stats />}

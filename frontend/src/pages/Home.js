@@ -13,7 +13,7 @@ export const Home = () => {
         const fetchWorkouts = async () => { // fetch data from the backend
             const response = await fetch('/api/workouts') // in package json - added proxy to direct unknown requests to the backend server; otherwise stops them for cross origin; it will work only in development; in production it will not
             const json = await response.json() // an array ot workout objects
-            console.log(json)
+            // console.log(json)
             if (response.ok) {
                 dispatch({
                     type: 'SET_WORKOUTS',
@@ -25,13 +25,11 @@ export const Home = () => {
         fetchWorkouts()
     }, [dispatch])
 
-    console.log(workouts)
+    // console.log(workouts)
 
     return (
         <Fragment>
            <LandingPage />
-
-
             <div className="home">
                 <div className='workouts'>
                     {workouts && workouts.map((workout) => (

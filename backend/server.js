@@ -50,7 +50,7 @@ app.use('/api/workouts', workoutRoutes) // fire a request only on the path /api/
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
 
-        //listen for requests at port 3000 once we have connected to the db successfully
+        //listen for requests at port 5000 once we have connected to the db successfully
         //store posrt in environment variable that are not visible in the code - for sensitive information
         //process.env.PORT pulls the hidden variable from the env file
         app.listen(process.env.PORT, () => {
