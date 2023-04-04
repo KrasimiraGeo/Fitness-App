@@ -4,26 +4,29 @@
 :root {
   --primary: #88E4D6;
   --error: #e7195a;
-  --purple:#9757D7;
+  --purple: #9757D7;
   --blue: #3772FF;
-  --orange:#FF592C;
-  --yellow:#FDCA40;
+  --orange: #FF592C;
+  --yellow: #FDCA40;
   --darkGrey: #121212;
   --landingGrey: #476367;
-  --fieldGreyLighter:#3a3939f2;
-  --fieldGrey:#282727eb;
+  --fieldGreyLighter: #3a3939f2;
+  --fieldGrey: #282727eb;
   --grey: #535353;
   --offwhite: #f5f5f5;
 }
+
 body {
   background: var(--darkGrey);
   margin: 0;
   font-family: "Poppins";
 }
+
 header {
   background: var(--darkGrey);
   border-bottom: 1px solid #555;
 }
+
 header .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -31,36 +34,35 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color:var(--darkGrey);
-  
+  background-color: var(--darkGrey);
+
 }
+
 header a {
   color: var(--offwhite);
   text-decoration: none;
 }
-header h1{
+
+header h1 {
   font-size: 20px;
 }
 
-.pages{
+.pages {
   max-width: 1400px;
-  /* padding: 20px; */
   margin: 0 auto;
   background-color: var(--darkGrey);
 }
 
-.landing{
-  /* background-image: url('./assets/train-insane.jpg'); */
+.landing {
   color: var(--offwhite);
   background-color: var(--landingGrey);
   border-bottom: 50px solid var(--landingGrey);
   display: grid;
-    justify-content: end;
-    justify-items: start;
-  /* border-image: linear-gradient(to bottom, var(--landingGrey), var(--darkGrey)) 1 100%; */
+  justify-content: end;
+  justify-items: start;
 }
 
-.head{
+.head {
   width: fit-content;
   height: auto;
   position: absolute;
@@ -73,28 +75,31 @@ header h1{
   flex-wrap: wrap;
   color: var(--offwhite);
 }
-.head h1{
+
+.head h1 {
   margin-bottom: 0px;
 }
-.head h4{
-  
+
+.head h4 {
+
   margin-top: 10px;
 }
 
-.head button{
+.head button {
   padding: 10px 20px;
   border-radius: 10px;
-  border:2px solid var(--primary);
-  background-color:var(--landingGrey);
- color:white;
+  border: 2px solid var(--primary);
+  background-color: var(--landingGrey);
+  color: white;
 }
-.head button:hover{
+
+.head button:hover {
   background-color: var(--primary);
-  color:var(--darkGrey);
+  color: var(--darkGrey);
   cursor: pointer;
 }
 
-.holder{
+.holder {
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -102,18 +107,18 @@ header h1{
   z-index: 1;
 }
 
-.holder img{
-  max-width:100%;
+.holder img {
+  max-width: 100%;
   position: static;
 }
 
-.landing h3{
+.landing h3 {
   position: absolute;
 }
 
-.landing img{
- object-fit: fill;
- display: flex;
+.landing img {
+  object-fit: fill;
+  display: flex;
 }
 
 @media only screen and (max-width: 1250px) {
@@ -141,13 +146,14 @@ header h1{
   height: auto;
 }
 
+/* stats */
+
+.wrapper h2{
+  color:white;
+}
 
 /* homepage */
-/* .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 50px;
-} */
+
 .home {
   display: grid;
   grid-template-columns: 1fr;
@@ -161,94 +167,95 @@ header h1{
   }
 }
 
-.workouts{
-  padding:20px;
- 
+.workouts {
+  padding: 20px;
+
 }
 
+/* workout details */
 .workout-details,
 .workout-details-edit {
   background: var(--fieldGrey);
   border-radius: 10px;
   margin: 16px auto;
-  padding:20px;
+  padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-  border:2px solid var(--landingGrey);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--landingGrey);
   margin-top: 2%;
- 
-/* create two columns of equal width */
 }
 
-
-
-/* .workout-details-edit input {
-  margin-top:5%;
-} */
-
-.workout-details:hover{
+.workout-details:hover {
   background: #2f4144;
   cursor: pointer;
 
 }
+
 .workout-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
   color: var(--primary);
 }
+
 .workout-details p {
   margin: 0;
   font-size: 1em;
   color: var(--offwhite);
 }
+
 .workout-details span {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background:var(--darkGrey);
+  background: var(--darkGrey);
   padding: 6px;
   border-radius: 50%;
   color: var(--offwhite);
-   border:2px solid var(--primary);
-}
-.workout-details span:hover{
-background-color: var(--error);
+  border: 2px solid var(--primary);
 }
 
-.workout-details span:last-child:hover{
+.workout-details span:hover {
+  background-color: var(--error);
+}
+
+.workout-details span:last-child:hover {
   background-color: var(--blue);
 }
 
-.buttons-wrapper{
+.buttons-wrapper {
   position: absolute;
   bottom: 0;
   left: 0;
 }
 
-.create{
-  padding: 20px; 
+.create {
+  padding: 20px;
 }
 
 /* new workout form */
-form{
+form {
   background-color: var(--fieldGrey);
   padding: 10px 20px;
   border-radius: 10px;
   height: fit-content;
-  margin: 16px;  
-  border:2px solid var(--landingGrey);
+  margin: 16px;
+  border: 2px solid var(--landingGrey);
 }
 
-label, input{
+label,
+input {
   display: block;
   color: var(--offwhite);
   margin-top: 1%;
 }
-form h3{
-  color:var(--offwhite);
+
+form h3 {
+  color: var(--offwhite);
 }
-input, select {
+
+input,
+select {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 15px;
@@ -257,13 +264,14 @@ input, select {
   border-radius: 4px;
   box-sizing: border-box;
   background-color: var(--offwhite);
- color: var(--darkGrey);
- text-transform: capitalize;
+  color: var(--darkGrey);
+  text-transform: capitalize;
 }
 
-.label{
+.label {
   margin-top: 2%;
 }
+
 form button {
   background: var(--fieldGreyLighter);
   border: 2px solid var(--landingGrey);
@@ -276,11 +284,12 @@ form button {
   margin-bottom: 20px;
 }
 
-form button:hover{
-background:var(--primary);
-color:var(--darkGrey);
+form button:hover {
+  background: var(--primary);
+  color: var(--darkGrey);
 
 }
+
 div.error {
   padding: 10px;
   background: #e7195a1e;
@@ -291,54 +300,56 @@ div.error {
   border-radius: 10px;
   text-align: center;
 }
+
 input.error,
 select.error {
   border: 2px solid var(--error);
   border-radius: 10px;
 }
 
-.list{
-  display: flex;
-  justify-content: center;
-}
 
 /* Material UI Calendar css */
 
-.calendar-wrapper{
+.calendar-wrapper {
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
 }
 
-.css-1hbyad5-MuiTypography-root{
-  display:none !important;
-}
-.css-hlj6pa-MuiDialogActions-root{
-  display:none !important;
-}
-.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content{
-  justify-content: center;
-  display:none !important;
+.css-1hbyad5-MuiTypography-root {
+  display: none !important;
 }
 
-.css-16b5y55-MuiPickersLayout-contentWrapper{
+.css-hlj6pa-MuiDialogActions-root {
+  display: none !important;
+}
+
+.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content {
+  justify-content: center;
+  display: none !important;
+}
+
+.css-16b5y55-MuiPickersLayout-contentWrapper {
   background: var(--offwhite);
 }
-.css-4pax7l-MuiPickersLayout-root{
-max-width: 400px;
-max-height: 400px;
-border-radius: 10px;
-border: 1px solid var(--landingGrey);
-background: var(--offwhite);
+
+.css-4pax7l-MuiPickersLayout-root {
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 10px;
+  border: 1px solid var(--landingGrey);
+  background: var(--offwhite);
 }
 
-.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-toolbar{
-  display:none !important;
+.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-toolbar {
+  display: none !important;
 }
-.css-3jvy96-MuiTypography-root-MuiDatePickerToolbar-title{
+
+.css-3jvy96-MuiTypography-root-MuiDatePickerToolbar-title {
   font-size: 20px;
 }
-.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content h4{
+
+.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content h4 {
   font-size: 20px;
   padding-bottom: 0;
   margin-bottom: 0;
@@ -348,20 +359,20 @@ background: var(--offwhite);
 
 .css-156tkzh-MuiButtonBase-root-MuiPickersDay-root {
   background-color: var(--darkGrey);
-  color:white;
+  color: white;
 }
 
-.css-flbe84-MuiDayCalendar-weekContainer span text{
+.css-flbe84-MuiDayCalendar-weekContainer span text {
   background-color: var(--darkGrey);
 }
 
-.css-dplwbx-MuiPickersCalendarHeader-label{
-  color:var(--darkGrey);
+.css-dplwbx-MuiPickersCalendarHeader-label {
+  color: var(--darkGrey);
 }
 
 /* date circles */
 
-.css-156tkzh-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+.css-156tkzh-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -394,7 +405,7 @@ background: var(--offwhite);
   -webkit-text-decoration: none;
   text-decoration: none;
   color: inherit;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   font-size: 0.75rem;
   line-height: 1.66;
@@ -403,17 +414,16 @@ background: var(--offwhite);
   height: 36px;
   border-radius: 50%;
   padding: 0;
-  background-color: #dfdef8;  
+  background-color: #dfdef8;
   color: rgba(0, 0, 0, 0.87);
   margin: 0 2px;
 }
 
-.css-156tkzh-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled{
+.css-156tkzh-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled {
   background: #e7e7e7;
-  color:#bfbfbf;
+  color: #bfbfbf;
 }
 
-.css-1hiwve1-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
-  color:var(--offwhite);
-  /* background-color: var(--landingGrey) */
+.css-1hiwve1-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  color: var(--offwhite);
 }

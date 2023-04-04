@@ -29,11 +29,8 @@ export const Stats = () => {
   // filtered dates are not in the context workout array; returns null 
 
   return (
-    <div className={classes.wrapper}>
-      <div>
-        <h2>This month's activity rate</h2>
-      </div>
-      {/* <p>This is stats page</p> */}
+    <div className="wrapper">     
+      <p>This is stats page</p>
       {/* <div className={classes.list}>
         {filteredWorkouts.map(workout => (
           <WorkoutDetails key={workout._id} workout={workout} />

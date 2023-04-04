@@ -139,18 +139,24 @@ const updateWorkout = async (req, res) => {
 
 const getMonthlyStats = async (req, res) => {
 
+    // TODO: req - time range 
+    // {"date":{$gt: "2023-03-23", $lt: "2023-04-22"}}
+
+    console.log(req.params);
+
     try {
-        const requestDate = req.params.date; // gets the full date
-        const year = requestDate.toString().split('-')[0]; 
-        const month = requestDate.toString().split('-')[1];
-    
-        const workouts = await Workout.find({
-          $expr: {
-            $and: [
-              { $eq: [{ $year: { $toDate: "$date" } }, Number(year)] },
-              { $eq: [{ $month: { $toDate: "$date" } }, Number(month)] }
-            ]
-          }
+        const ltDate = new Date (req.params.date); // gets the full date 2023-04-03 // convert string to date object
+        const gteDate = new Date(ltDate.getTime()- 7 * 24 * 60 * 60 * 1000) // calculate 7 days back from the lt Date
+       
+        const from = gteDate.toISOString().split('T')[0]
+        const to = ltDate.toISOString().split('T')[0]
+       
+        const workouts = await Workout.find(
+            { "date" : {
+                $gte: from,
+                $lte: to
+            }
+          
         });
     
         res.status(200).json(workouts);
